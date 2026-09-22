@@ -1,0 +1,41 @@
+<!-- Navbar estilizado con clases de Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary px-4">
+  <div class="container-fluid">
+    <a class="navbar-brand text-success fw-bold fs-3" href="#">Spotify App</a>
+  </div>
+</nav>
+
+<!-- Contenedor Principal -->
+<div class="container my-5">
+  <div class="row mb-4">
+    <div class="col-12 text-center text-white">
+      <h1 class="display-4 fw-bold">Canciones Destacadas</h1>
+      <p class="lead text-secondary">Selecciona una canción para simular la reproducción</p>
+    </div>
+  </div>
+
+  <!-- Tarjetas generadas dinámicamente desde TypeScript -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let track of tracks">
+      <div class="card h-100 bg-dark text-white border-secondary shadow">
+        <img [src]="track.coverUrl" class="card-img-top p-3 rounded" [alt]="track.title">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 class="card-title fw-bold text-truncate">{{ track.title }}</h5>
+            <p class="card-text text-secondary mb-1">{{ track.artist }}</p>
+            <p class="card-text text-muted small">{{ track.album }}</p>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <small class="text-muted">{{ track.duration }}</small>
+            <button 
+              class="btn btn-success fw-bold px-3 rounded-pill" 
+              (click)="reproducirCancion(track)">
+              Reproducir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
